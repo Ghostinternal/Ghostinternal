@@ -1,133 +1,118 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<title>Macchine - Ghostinternal</title>
+    <meta charset="UTF-8">
+    <title>Macchine CNC - Ghostinternal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0c0c0c;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #0c0c0c;
-        color: white;
-        font-family: Arial, sans-serif;
-    }
+        .container {
+            width: 90%;
+            margin: auto;
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-    header {
-        width: 100%;
-        height: 70px;
-        background: #0b0b0b;
-        border-bottom: 1px solid #222;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 25px;
-    }
+        .machine-box {
+            width: 300px;
+            background: #111;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    #logo {
-        height: 45px;
-    }
+        .machine-box:hover {
+            transform: scale(1.05);
+            background: #181818;
+        }
 
-    .back {
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        text-decoration: none;
-        padding: 8px 14px;
-        border-radius: 8px;
-        border: 1px solid #333;
-    }
+        .machine-box img {
+            width: 100%;
+            border-radius: 10px;
+        }
 
-    .back:hover {
-        border-color: #00ff99;
-        color: #00ff99;
-    }
+        .status {
+            margin-top: 15px;
+            font-size: 18px;
+        }
 
-    .container {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        padding: 50px;
-    }
+        .dot {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
 
-    .machine-card {
-        background: #111;
-        padding: 20px;
-        border-radius: 20px;
-        width: 280px;
-        text-align: center;
-        border: 1px solid #222;
-    }
+        .on { background: #00ff6a; }
+        .off { background: #ff3131; }
+        .problem { background: #ffcc00; }
+    </style>
 
-    .machine-card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 12px;
-    }
+    <script>
+        // Cambia stato cliccando il pallino
+        function toggleStatus(id) {
+            const dot = document.getElementById(id);
 
-    .machine-name {
-        margin-top: 12px;
-        font-size: 20px;
-        font-weight: bold;
-    }
+            if (dot.classList.contains("on")) {
+                dot.classList.remove("on");
+                dot.classList.add("problem");
+            } 
+            else if (dot.classList.contains("problem")) {
+                dot.classList.remove("problem");
+                dot.classList.add("off");
+            }
+            else {
+                dot.classList.remove("off");
+                dot.classList.add("on");
+            }
+        }
+    </script>
 
-    .status {
-        margin-top: 10px;
-        font-size: 18px;
-        padding: 6px 12px;
-        border-radius: 8px;
-        display: inline-block;
-    }
-
-    .on {
-        background: #006600;
-        border: 1px solid #00ff00;
-    }
-
-    .off {
-        background: #660000;
-        border: 1px solid #ff0000;
-    }
-
-    .problem {
-        background: #665500;
-        border: 1px solid #ffcc00;
-    }
-</style>
 </head>
-
 <body>
 
-<header>
-    <img id="logo" src="logo.png">
-    <a class="back" href="dashboard.html">← Torna alla Dashboard</a>
-</header>
+    <div class="container">
 
-<div class="container">
+        <!-- OMZ FANUC -->
+        <div class="machine-box" onclick="window.location='omz_fanuc.html'">
+            <img src="OMZNT12FANUC.png">
+            <h3>OMZ NT12 – Fanuc 21i-M</h3>
+            <div class="status">Stato:
+                <span id="s1" class="dot on" onclick="event.stopPropagation(); toggleStatus('s1')"></span>
+            </div>
+        </div>
 
-    <!-- MACCHINA 1 -->
-    <div class="machine-card">
-        <img src="macchina1.jpg" alt="Macchina 1">
-        <div class="machine-name">OMZ NT12</div>
-        <div class="status on">🟢 ON</div>
+        <!-- OMZ MELDAS -->
+        <div class="machine-box" onclick="window.location='omz_meldas.html'">
+            <img src="OMZNT12MELDAS.png">
+            <h3>OMZ NT12 – Meldas 50</h3>
+            <div class="status">Stato:
+                <span id="s2" class="dot off" onclick="event.stopPropagation(); toggleStatus('s2')"></span>
+            </div>
+        </div>
+
+        <!-- DART VMC 610 -->
+        <div class="machine-box" onclick="window.location='dart_vmc610.html'">
+            <img src="DARTVMC610.png">
+            <h3>DART VMC 610</h3>
+            <div class="status">Stato:
+                <span id="s3" class="dot problem" onclick="event.stopPropagation(); toggleStatus('s3')"></span>
+            </div>
+        </div>
+
     </div>
-
-    <!-- MACCHINA 2 -->
-    <div class="machine-card">
-        <img src="macchina2.jpg" alt="Macchina 2">
-        <div class="machine-name">DART 610</div>
-        <div class="status off">🔴 OFF</div>
-    </div>
-
-    <!-- MACCHINA 3 -->
-    <div class="machine-card">
-        <img src="macchina3.jpg" alt="Macchina 3">
-        <div class="machine-name">Fresatrice XYZ</div>
-        <div class="status problem">🟡 PROBLEM</div>
-    </div>
-
-</div>
 
 </body>
 </html>
