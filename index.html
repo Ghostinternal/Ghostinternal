@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Ghostinternal Access Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0c0c0c;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        img.logo {
+            width: 200px;
+            margin-bottom: 40px;
+        }
+
+        .flags {
+            display: flex;
+            gap: 40px;
+        }
+
+        .flag {
+            width: 100px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .flag:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <img src="logo.png" class="logo" alt="Company Logo">
+
+    <div class="flags">
+        <a href="login.html"><img src="italy.png" class="flag" alt="Italia"></a>
+        <a href="login.html"><img src="usa.png" class="flag" alt="USA"></a>
+    </div>
+
+</body>
+</html>
