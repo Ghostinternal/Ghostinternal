@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Macchine CNC</title>
+
     <style>
         body {
             margin: 0;
@@ -34,7 +35,65 @@
 
         .machine-box img {
             width: 260px;
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
+        }
+
+        /* --- SELECTOR STATUS --- */
+
+        .status-box {
+            margin-top: 15px;
+            position: relative;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .status-trigger {
+            background: #222;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .status-menu {
+            margin-top: 8px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            width: 140px;
+            display: none;
+        }
+
+        .status-option {
+            padding: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-option:hover {
+            background: #1b1b1b;
+        }
+
+        .dot {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .on { background: #00ff6a; }
+        .problem { background: #ffcc00; }
+        .off { background: #ff3131; }
+
+        .selected-state {
+            margin-top: 12px;
+            font-size: 18px;
+            display: none;
         }
 
         .backup-btn {
@@ -52,61 +111,106 @@
         .backup-btn:hover {
             background: #00e676;
         }
-    </style> .status-box {
-    margin-top: 15px;
-    position: relative;
-    display: inline-block;
-    text-align: left;
-}
-
-.status-trigger {
-    background: #222;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 1px solid #333;
-}
-
-.status-menu {
-    margin-top: 8px;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 10px;
-    width: 140px;
-    display: none;
-}
-
-.status-option {
-    padding: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.status-option:hover {
-    background: #1b1b1b;
-}
-
-.dot {
-    height: 18px;
-    width: 18px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.on { background: #00ff6a; }
-.problem { background: #ffcc00; }
-.off { background: #ff3131; }
-
-.selected-state {
-    margin-top: 12px;
-    font-size: 18px;
-    display: none;
-}
-
+    </style>
 </head>
+
+<body>
+
+<h1>Macchine CNC</h1>
+
+<div class="machines">
+
+    <!-- OMZ FANUC -->
+    <div class="machine-box">
+        <img src="OMZNT12FANUC.png">
+
+        <div class="status-box">
+            <div class="status-trigger" onclick="toggleMenu(this)">
+                Seleziona stato ⏷
+            </div>
+
+            <div class="status-menu">
+                <div class="status-option" onclick="selectState(this, 'on')">
+                    <span class="dot on"></span> ON
+                </div>
+                <div class="status-option" onclick="selectState(this, 'problem')">
+                    <span class="dot problem"></span> PROBLEM
+                </div>
+                <div class="status-option" onclick="selectState(this, 'off')">
+                    <span class="dot off"></span> OFF
+                </div>
+            </div>
+
+            <div class="selected-state">
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <a href="backup_fanuc.zip" class="backup-btn" download>Backup</a>
+    </div>
+
+
+    <!-- OMZ MELDAS -->
+    <div class="machine-box">
+        <img src="OMZNT12MELDAS.png">
+
+        <div class="status-box">
+            <div class="status-trigger" onclick="toggleMenu(this)">
+                Seleziona stato ⏷
+            </div>
+
+            <div class="status-menu">
+                <div class="status-option" onclick="selectState(this, 'on')">
+                    <span class="dot on"></span> ON
+                </div>
+                <div class="status-option" onclick="selectState(this, 'problem')">
+                    <span class="dot problem"></span> PROBLEM
+                </div>
+                <div class="status-option" onclick="selectState(this, 'off')">
+                    <span class="dot off"></span> OFF
+                </div>
+            </div>
+
+            <div class="selected-state">
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <a href="backup_meldas.zip" class="backup-btn" download>Backup</a>
+    </div>
+
+
+    <!-- DART VMC 610 -->
+    <div class="machine-box">
+        <img src="DARTVMC610.png">
+
+        <div class="status-box">
+            <div class="status-trigger" onclick="toggleMenu(this)">
+                Seleziona stato ⏷
+            </div>
+
+            <div class="status-menu">
+                <div class="status-option" onclick="selectState(this, 'on')">
+                    <span class="dot on"></span> ON
+                </div>
+                <div class="status-option" onclick="selectState(this, 'problem')">
+                    <span class="dot problem"></span> PROBLEM
+                </div>
+                <div class="status-option" onclick="selectState(this, 'off')">
+                    <span class="dot off"></span> OFF
+                </div>
+            </div>
+
+            <div class="selected-state">
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <a href="backup_dart.zip" class="backup-btn" download>Backup</a>
+    </div>
+
+</div>
+
 <script>
 function toggleMenu(trigger) {
     let menu = trigger.nextElementSibling;
@@ -117,112 +221,17 @@ function selectState(option, stateClass) {
     let menu = option.parentElement;
     let box = menu.parentElement;
 
-    // Nascondi il menu
     menu.style.display = "none";
 
-    // Mostra il pallino finale
     let final = box.querySelector(".selected-state");
     final.style.display = "block";
 
-    // Colore pallino finale
     let dot = final.querySelector(".dot");
     dot.className = "dot " + stateClass;
 
-    // Nascondi il trigger
     box.querySelector(".status-trigger").style.display = "none";
 }
 </script>
-<body>
-
-<h1>Macchine CNC</h1>
-
-<div class="machines">
-
-    <!-- OMZ Fanuc -->
-  <div class="status-box">
-
-    <!-- Trigger della tendina -->
-    <div class="status-trigger" onclick="toggleMenu(this)">
-        Seleziona stato ⏷
-    </div>
-
-    <!-- Menu a tendina -->
-    <div class="status-menu">
-        <div class="status-option" onclick="selectState(this, 'on')">
-            <span class="dot on"></span> ON
-        </div>
-        <div class="status-option" onclick="selectState(this, 'problem')">
-            <span class="dot problem"></span> PROBLEM
-        </div>
-        <div class="status-option" onclick="selectState(this, 'off')">
-            <span class="dot off"></span> OFF
-        </div>
-    </div>
-
-    <!-- Stato finale -->
-    <div class="selected-state">
-        <span class="dot"></span>
-    </div>
-</div>
-
-
-    <!-- OMZ Meldas -->
-  <div class="status-box">
-
-    <!-- Trigger della tendina -->
-    <div class="status-trigger" onclick="toggleMenu(this)">
-        Seleziona stato ⏷
-    </div>
-
-    <!-- Menu a tendina -->
-    <div class="status-menu">
-        <div class="status-option" onclick="selectState(this, 'on')">
-            <span class="dot on"></span> ON
-        </div>
-        <div class="status-option" onclick="selectState(this, 'problem')">
-            <span class="dot problem"></span> PROBLEM
-        </div>
-        <div class="status-option" onclick="selectState(this, 'off')">
-            <span class="dot off"></span> OFF
-        </div>
-    </div>
-
-    <!-- Stato finale -->
-    <div class="selected-state">
-        <span class="dot"></span>
-    </div>
-</div>
-
-
-    <!-- DART VMC 610 -->
-   <div class="status-box">
-
-    <!-- Trigger della tendina -->
-    <div class="status-trigger" onclick="toggleMenu(this)">
-        Seleziona stato ⏷
-    </div>
-
-    <!-- Menu a tendina -->
-    <div class="status-menu">
-        <div class="status-option" onclick="selectState(this, 'on')">
-            <span class="dot on"></span> ON
-        </div>
-        <div class="status-option" onclick="selectState(this, 'problem')">
-            <span class="dot problem"></span> PROBLEM
-        </div>
-        <div class="status-option" onclick="selectState(this, 'off')">
-            <span class="dot off"></span> OFF
-        </div>
-    </div>
-
-    <!-- Stato finale -->
-    <div class="selected-state">
-        <span class="dot"></span>
-    </div>
-</div>
-
-
-</div>
 
 </body>
 </html>
