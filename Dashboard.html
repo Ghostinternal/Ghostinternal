@@ -27,7 +27,6 @@
         border-bottom: 1px solid #222;
     }
 
-    /* LOGO */
     #logo {
         height: 45px;
     }
@@ -46,7 +45,6 @@
         transition: 0.3s;
     }
 
-    /* USER DROPDOWN */
     .user-box {
         position: relative;
     }
@@ -62,13 +60,14 @@
         border: 1px solid #333;
         font-size: 14px;
         color: #fff;
+        white-space: nowrap;
     }
 
     .user-box:hover .user-dropdown {
         display: block;
     }
 
-    /* GRID CENTRALE */
+    /* DESKTOP GRID */
     .desktop {
         width: 100%;
         height: calc(100vh - 70px);
@@ -79,45 +78,47 @@
 
     .app-grid {
         display: grid;
-        grid-template-columns: repeat(4, 120px);
-        gap: 40px;
+        grid-template-columns: repeat(4, 130px);
+        gap: 45px;
+        padding-top: 40px;
     }
 
-    /* APP ICON PLACEHOLDER */
-    .app-icon {
-        width: 120px;
-        height: 120px;
-        background: #111;
-        border-radius: 20px;
-        border: 1px solid #222;
+    /* APP ICON */
+    .app {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: #777;
-        font-size: 14px;
-        user-select: none;
-    }
-
-    .app-icon:hover {
-        border-color: #00ff99;
-        color: #00ff99;
-        transition: 0.3s;
         cursor: pointer;
     }
 
+    .app img {
+        width: 120px;
+        height: 120px;
+        border-radius: 22px;
+        transition: 0.3s;
+    }
+
+    .app img:hover {
+        transform: scale(1.07);
+        box-shadow: 0 0 18px rgba(0,255,150,0.25);
+    }
+
+    .app span {
+        margin-top: 10px;
+        color: #fff;
+        font-size: 15px;
+        opacity: 0.85;
+    }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-    <!-- Logo a sinistra -->
     <img id="logo" src="logo.png" alt="Ghostinternal Logo">
 
-    <!-- Icone a destra -->
     <div class="header-icons">
-
         <div>🔔</div>
         <div>💬</div>
 
@@ -125,22 +126,57 @@
             👤
             <div class="user-dropdown">1T-CNC</div>
         </div>
-
     </div>
 </header>
 
-
-<!-- AREA CENTRALE (VUOTA AL MOMENTO) -->
 <div class="desktop">
     <div class="app-grid">
-        <!-- Qui poi metteremo le tue app -->
-        <div class="app-icon">Vuoto</div>
-        <div class="app-icon">Vuoto</div>
-        <div class="app-icon">Vuoto</div>
-        <div class="app-icon">Vuoto</div>
+
+        <!-- PRODOTTI -->
+        <div class="app">
+            <img src="prodotti.png" alt="Prodotti">
+            <span>Prodotti</span>
+        </div>
+
+        <!-- MAGAZZINO -->
+        <div class="app">
+            <img src="magazzino.png" alt="Magazzino">
+            <span>Magazzino</span>
+        </div>
+
+        <!-- RIFIUTI -->
+        <div class="app">
+            <img src="rifiuti.png" alt="Rifiuti">
+            <span>Rifiuti</span>
+        </div>
+
+        <!-- ASSISTENZE -->
+        <div class="app">
+            <img src="Assistenze.png" alt="Assistenze">
+            <span>Assistenze</span>
+        </div>
+
+        <!-- MATERIALE -->
+        <div class="app">
+            <img src="materiale.png" alt="Materiale">
+            <span>Materiale</span>
+        </div>
+
+        <!-- MACCHINE -->
+        <div class="app">
+            <img src="macchine.png" alt="Macchine">
+            <span>Macchine</span>
+        </div>
+
+        <!-- PROGRAMMI CNC -->
+        <div class="app">
+            <img src="programmi.png" alt="Programmi CNC">
+            <span>Programmi CNC</span>
+        </div>
+
     </div>
 </div>
 
-
 </body>
 </html>
+
