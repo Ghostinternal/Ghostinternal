@@ -5,31 +5,25 @@
     <title>Macchine CNC</title>
 
     <style>
-        .program-icon {
-    width: 32px;     /* Icona piccola */
-    height: 32px;
-    opacity: 0.85;
-    cursor: pointer;
-    transition: 0.2s;
-}
 
+        /* Icona Programmi */
         .programmi-box {
-    margin-top: 15px;
-    text-align: center;
-}
+            margin-top: 15px;
+            text-align: center;
+        }
 
-.program-icon {
-    width: 32px;     /* Icona piccola */
-    height: 32px;
-    opacity: 0.85;
-    cursor: pointer;
-    transition: 0.2s;
-}
-      
-.program-icon:hover {
-    opacity: 1;
-    transform: scale(1.08);
-}
+        .program-icon {
+            width: 32px;
+            height: 32px;
+            opacity: 0.85;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .program-icon:hover {
+            opacity: 1;
+            transform: scale(1.08);
+        }
 
         body {
             margin: 0;
@@ -65,8 +59,6 @@
             object-fit: cover;
             border-radius: 10px;
         }
-
-        /* SELECTOR STATUS */
 
         .status-box {
             margin-top: 15px;
@@ -173,13 +165,12 @@
         </div>
 
         <a href="backup/Backup OMZ nt12 (Fanuc).zip" class="backup-btn" download>Backup</a>
-        <!-- Icona Programmi CNC -->
-<div class="programmi-box">
-    <a href="programmi_fanuc.html">
-        <img src="programmi.png" class="program-icon">
-    </a>
-</div>
 
+        <div class="programmi-box">
+            <a href="programmi_fanuc.html">
+                <img src="programmi.png" class="program-icon">
+            </a>
+        </div>
     </div>
 
 
@@ -210,16 +201,12 @@
         </div>
 
         <a href="backup/Backup OMZ nt12 (Meldas50).zip" class="backup-btn" download>Backup</a>
-        <!-- Icona Programmi CNC -->
-<div class="programmi-box">
-    <a href="programmi_meldas.html">
-        <img src="programmi.png" class="program-icon">
-    </a>
-</div>
 
-    </a>
-</div>
-
+        <div class="programmi-box">
+            <a href="programmi_meldas.html">
+                <img src="programmi.png" class="program-icon">
+            </a>
+        </div>
     </div>
 
 
@@ -250,16 +237,12 @@
         </div>
 
         <a href="backup/Backup DART VMC 610.zip" class="backup-btn" download>Backup</a>
-        <!-- Icona Programmi CNC -->
-<div class="programmi-box">
-    <a href="programmi_dart.html">
-        <img src="programmi.png" class="program-icon">
-    </a>
-</div>
 
-    </a>
-</div>
-
+        <div class="programmi-box">
+            <a href="programmi_dart.html">
+                <img src="programmi.png" class="program-icon">
+            </a>
+        </div>
     </div>
 
 </div>
@@ -282,9 +265,11 @@ function selectState(option, stateClass) {
     let dot = final.querySelector(".dot");
     dot.className = "dot " + stateClass;
 
-    box.querySelector(".status-trigger").style.display = "none";
+    // Permette di cambiare lo stato in qualsiasi momento
+    box.querySelector(".status-trigger").textContent = "Cambia stato ⏷";
 }
 </script>
 
 </body>
 </html>
+
