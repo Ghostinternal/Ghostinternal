@@ -34,7 +34,7 @@
             box-shadow: 0 0 20px #000;
         }
 
-        /* Immagini grandi delle macchine */
+        /* Immagini macchine */
         .machine-box img:not(.program-icon) {
             width: 260px;
             height: 200px;
@@ -42,7 +42,7 @@
             border-radius: 10px;
         }
 
-        /* ----- STATO MACCHINA ----- */
+        /* STATO MACCHINA */
 
         .status-box {
             margin-top: 15px;
@@ -98,8 +98,7 @@
             display: none;
         }
 
-        /* ----- BACKUP + PROGRAMMI ----- */
-
+        /* BACKUP + PROGRAMMI */
         .action-row {
             margin-top: 20px;
             display: flex;
@@ -122,14 +121,18 @@
             background: #00e676;
         }
 
-        /* Icona Programmi */
+        /* ICONA PROGRAMMI */
+        .program-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
         .program-icon {
             width: 40px;
             height: 40px;
             opacity: 0.85;
             cursor: pointer;
             transition: 0.2s;
-            position: relative;
         }
 
         .program-icon:hover {
@@ -137,8 +140,8 @@
             transform: scale(1.08);
         }
 
-        /* Tooltip Programmi */
-        .program-icon:hover::after {
+        /* TOOLTIP PROGRAMMI */
+        .program-wrapper:hover::after {
             content: "Programmi";
             position: absolute;
             background: #000;
@@ -186,7 +189,7 @@
         <div class="action-row">
             <a href="backup/Backup OMZ nt12 (Fanuc).zip" class="backup-btn" download>Backup</a>
 
-            <a href="programmi_fanuc.html">
+            <a href="programmi_fanuc.html" class="program-wrapper">
                 <img src="programmi.png" class="program-icon">
             </a>
         </div>
@@ -218,7 +221,7 @@
         <div class="action-row">
             <a href="backup/Backup OMZ nt12 (Meldas50).zip" class="backup-btn" download>Backup</a>
 
-            <a href="programmi_meldas.html">
+            <a href="programmi_meldas.html" class="program-wrapper">
                 <img src="programmi.png" class="program-icon">
             </a>
         </div>
@@ -250,7 +253,7 @@
         <div class="action-row">
             <a href="backup/Backup DART VMC 610.zip" class="backup-btn" download>Backup</a>
 
-            <a href="programmi_dart.html">
+            <a href="programmi_dart.html" class="program-wrapper">
                 <img src="programmi.png" class="program-icon">
             </a>
         </div>
@@ -259,6 +262,7 @@
 </div>
 
 <script>
+
 function toggleMenu(trigger) {
     let menu = trigger.nextElementSibling;
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
@@ -278,6 +282,7 @@ function selectState(option, stateClass) {
 
     box.querySelector(".status-trigger").textContent = "Cambia stato ⏷";
 }
+
 </script>
 
 </body>
