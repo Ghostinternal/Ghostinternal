@@ -123,17 +123,16 @@
 
 </header>
 
-
 <script>
 function updateClocks() {
     const now = new Date();
 
-    // 🇮🇹 Ora italiana 24h
+    // 🇮🇹 Ora italiana (24H)
     let italyHours = now.getHours().toString().padStart(2, '0');
     let italyMinutes = now.getMinutes().toString().padStart(2, '0');
     document.getElementById("italyTime").textContent = italyHours + ":" + italyMinutes;
 
-    // 🇺🇸 Ora Miami (UTC-5 o -4 con DST)
+    // 🇺🇸 Miami (12H AM/PM)
     let miami = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
     miami = new Date(miami);
 
@@ -142,7 +141,7 @@ function updateClocks() {
     let ampm = mh >= 12 ? "PM" : "AM";
 
     mh = mh % 12;
-    if (mh === 0) mh = 12; // 12-hour format fix
+    if (mh === 0) mh = 12;
 
     document.getElementById("miamiTime").textContent = mh + ":" + mm + " " + ampm;
 }
