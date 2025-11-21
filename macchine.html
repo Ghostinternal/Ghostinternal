@@ -6,25 +6,6 @@
 
     <style>
 
-        /* Icona Programmi */
-        .programmi-box {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .program-icon {
-            width: 32px;
-            height: 32px;
-            opacity: 0.85;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .program-icon:hover {
-            opacity: 1;
-            transform: scale(1.08);
-        }
-
         body {
             margin: 0;
             padding: 0;
@@ -53,15 +34,15 @@
             box-shadow: 0 0 20px #000;
         }
 
-      /* Immagini delle macchine */
-.machine-box img:not(.program-icon) {
-    width: 260px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
+        /* Immagini grandi delle macchine */
+        .machine-box img:not(.program-icon) {
+            width: 260px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
         }
+
+        /* ----- STATO MACCHINA ----- */
 
         .status-box {
             margin-top: 15px;
@@ -117,9 +98,17 @@
             display: none;
         }
 
-        .backup-btn {
+        /* ----- BACKUP + PROGRAMMI ----- */
+
+        .action-row {
             margin-top: 20px;
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .backup-btn {
             padding: 12px 20px;
             background: #00c853;
             color: black;
@@ -132,6 +121,37 @@
         .backup-btn:hover {
             background: #00e676;
         }
+
+        /* Icona Programmi */
+        .program-icon {
+            width: 40px;
+            height: 40px;
+            opacity: 0.85;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .program-icon:hover {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        /* Tooltip Programmi */
+        .program-icon:hover::after {
+            content: "Programmi";
+            position: absolute;
+            background: #000;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
     </style>
 </head>
 
@@ -146,9 +166,7 @@
         <img src="OMZNT12FANUC.png">
 
         <div class="status-box">
-            <div class="status-trigger" onclick="toggleMenu(this)">
-                Seleziona stato ⏷
-            </div>
+            <div class="status-trigger" onclick="toggleMenu(this)">Seleziona stato ⏷</div>
 
             <div class="status-menu">
                 <div class="status-option" onclick="selectState(this, 'on')">
@@ -162,14 +180,12 @@
                 </div>
             </div>
 
-            <div class="selected-state">
-                <span class="dot"></span>
-            </div>
+            <div class="selected-state"><span class="dot"></span></div>
         </div>
 
-        <a href="backup/Backup OMZ nt12 (Fanuc).zip" class="backup-btn" download>Backup</a>
+        <div class="action-row">
+            <a href="backup/Backup OMZ nt12 (Fanuc).zip" class="backup-btn" download>Backup</a>
 
-        <div class="programmi-box">
             <a href="programmi_fanuc.html">
                 <img src="programmi.png" class="program-icon">
             </a>
@@ -182,9 +198,7 @@
         <img src="OMZNT12MELDAS.png">
 
         <div class="status-box">
-            <div class="status-trigger" onclick="toggleMenu(this)">
-                Seleziona stato ⏷
-            </div>
+            <div class="status-trigger" onclick="toggleMenu(this)">Seleziona stato ⏷</div>
 
             <div class="status-menu">
                 <div class="status-option" onclick="selectState(this, 'on')">
@@ -198,14 +212,12 @@
                 </div>
             </div>
 
-            <div class="selected-state">
-                <span class="dot"></span>
-            </div>
+            <div class="selected-state"><span class="dot"></span></div>
         </div>
 
-        <a href="backup/Backup OMZ nt12 (Meldas50).zip" class="backup-btn" download>Backup</a>
+        <div class="action-row">
+            <a href="backup/Backup OMZ nt12 (Meldas50).zip" class="backup-btn" download>Backup</a>
 
-        <div class="programmi-box">
             <a href="programmi_meldas.html">
                 <img src="programmi.png" class="program-icon">
             </a>
@@ -218,9 +230,7 @@
         <img src="DARTVMC610.png">
 
         <div class="status-box">
-            <div class="status-trigger" onclick="toggleMenu(this)">
-                Seleziona stato ⏷
-            </div>
+            <div class="status-trigger" onclick="toggleMenu(this)">Seleziona stato ⏷</div>
 
             <div class="status-menu">
                 <div class="status-option" onclick="selectState(this, 'on')">
@@ -234,14 +244,12 @@
                 </div>
             </div>
 
-            <div class="selected-state">
-                <span class="dot"></span>
-            </div>
+            <div class="selected-state"><span class="dot"></span></div>
         </div>
 
-        <a href="backup/Backup DART VMC 610.zip" class="backup-btn" download>Backup</a>
+        <div class="action-row">
+            <a href="backup/Backup DART VMC 610.zip" class="backup-btn" download>Backup</a>
 
-        <div class="programmi-box">
             <a href="programmi_dart.html">
                 <img src="programmi.png" class="program-icon">
             </a>
@@ -268,11 +276,9 @@ function selectState(option, stateClass) {
     let dot = final.querySelector(".dot");
     dot.className = "dot " + stateClass;
 
-    // Permette di cambiare lo stato in qualsiasi momento
     box.querySelector(".status-trigger").textContent = "Cambia stato ⏷";
 }
 </script>
 
 </body>
 </html>
-
