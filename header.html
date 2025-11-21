@@ -11,6 +11,7 @@
         background: #0c0c0c;
         font-family: Arial, sans-serif;
         color: #fff;
+        overflow-x: hidden;
     }
 
     /* HEADER */
@@ -29,13 +30,14 @@
         padding: 0 25px;
     }
 
+    /* Logo GH */
     #logo {
         height: 45px;
         position: absolute;
         left: 25px;
     }
 
-    /* OROLOGIO CENTRALE */
+    /* OROLOGI CENTRALI */
     .clock-center {
         position: absolute;
         left: 50%;
@@ -51,6 +53,11 @@
         display: flex;
         gap: 6px;
         align-items: center;
+    }
+
+    .country-time img {
+        height: 22px;
+        border-radius: 4px;
     }
 
     /* ICONCINE A DESTRA */
@@ -69,7 +76,7 @@
         transition: 0.3s;
     }
 
-    /* DROPDOWN UTENTE */
+    /* Dropdown utente */
     .user-box {
         position: relative;
     }
@@ -92,10 +99,10 @@
         display: block;
     }
 
-    /* DESKTOP GRID */
+    /* DASHBOARD APPS */
     .desktop {
         width: 100%;
-        margin-top: 100px;
+        margin-top: 110px;
         display: flex;
         justify-content: center;
     }
@@ -133,6 +140,7 @@
         font-size: 15px;
         opacity: 0.85;
     }
+
 </style>
 </head>
 
@@ -147,12 +155,14 @@
     <!-- Orologio -->
     <div class="clock-center">
         <div class="country-time">
-            <span style="font-size:20px;">🇮🇹</span> Brescia:
+            <img src="italy.png">
+            Brescia:
             <span id="italyTime">--:--</span>
         </div>
 
         <div class="country-time">
-            <span style="font-size:20px;">🇺🇸</span> Miami:
+            <img src="usa.png">
+            Miami:
             <span id="miamiTime">--:--</span>
         </div>
     </div>
@@ -218,7 +228,7 @@
     </div>
 </div>
 
-<!-- SCRIPT OROLOGIO -->
+<!-- SCRIPT OROLOGI -->
 <script>
 function updateClocks() {
     const now = new Date();
@@ -228,7 +238,7 @@ function updateClocks() {
     let im = now.getMinutes().toString().padStart(2,'0');
     document.getElementById("italyTime").textContent = ih + ":" + im;
 
-    // 🇺🇸 Miami
+    // 🇺🇸 Miami 12h AM/PM
     let m = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
     m = new Date(m);
 
