@@ -15,29 +15,49 @@
         overflow: hidden;
     }
 
-    /* HEADER */
+    /* HEADER FISSO */
     header {
         width: 100%;
         height: 70px;
         background: #0b0b0b;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        padding: 0 25px;
         border-bottom: 1px solid #222;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding: 0 25px;
     }
 
-    #logo {
-        height: 45px;
-    }
-
-    /* RIGHT ICONS */
-    .header-icons {
+    /* OROLOGI CENTRALI */
+    .clock-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 16px;
         display: flex;
+        gap: 25px;
         align-items: center;
+        opacity: 0.95;
+    }
+
+    .country-time {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    }
+
+    /* ICONCINE A DESTRA */
+    .header-icons {
+        position: absolute;
+        right: 25px;
+        display: flex;
         gap: 25px;
         font-size: 20px;
         cursor: pointer;
+        align-items: center;
     }
 
     .header-icons div:hover {
@@ -59,7 +79,6 @@
         border-radius: 5px;
         border: 1px solid #333;
         font-size: 14px;
-        color: #fff;
         white-space: nowrap;
     }
 
@@ -67,20 +86,21 @@
         display: block;
     }
 
-    /* DESKTOP GRID */
+    /* DESKTOP */
     .desktop {
         width: 100%;
         height: calc(100vh - 70px);
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-top: 70px; /* evita sovrapposizione con header */
     }
 
     .app-grid {
         display: grid;
         grid-template-columns: repeat(4, 130px);
         gap: 45px;
-        padding-top: 40px;
+        margin-top: 40px;
     }
 
     /* APP ICON */
@@ -116,17 +136,40 @@
 <body>
 
 <header>
-    <img id="logo" src="logo.png" alt="Ghostinternal Logo">
 
+    <!-- OROLOGIO CENTRALE -->
+    <div class="clock-center">
+        <div class="country-time">
+            🇮🇹 Brescia:
+            <span id="italyTime">--:--</span>
+        </div>
+
+        <div class="country-time">
+            🇺🇸 Miami:
+            <span id="miamiTime">--:--</span>
+        </div>
+    </div>
+
+    <!-- ICONCINE A DESTRA -->
     <div class="header-icons">
+
+        <!-- HOME -->
+        <div onclick="location.href='dashboard.html'">🏠</div>
+
+        <!-- NOTIFICHE -->
         <div>🔔</div>
+
+        <!-- MESSAGGI -->
         <div>💬</div>
 
+        <!-- UTENTE -->
         <div class="user-box">
             👤
             <div class="user-dropdown">1T-CNC</div>
         </div>
+
     </div>
+
 </header>
 
 <div class="desktop">
@@ -170,13 +213,13 @@
             <span>Macchine</span>
         </div>
 
-        <!-- FRESE (nuova) -->
+        <!-- FRESE -->
         <div class="app">
             <img src="frese.png" alt="Frese">
             <span>Frese</span>
         </div>
 
-        <!-- BLOCCO NOTE (nuova) -->
+        <!-- BLOCCO NOTE -->
         <div class="app">
             <img src="note.png" alt="Blocco Note">
             <span>Note</span>
@@ -184,6 +227,33 @@
 
     </div>
 </div>
+
+<script>
+function updateClocks() {
+    const now = new Date();
+
+    // 🇮🇹 ITALIA (24H)
+    let italyHours = now.getHours().toString().padStart(2, '0');
+    let italyMinutes = now.getMinutes().toString().padStart(2, '0');
+    document.getElementById("italyTime").textContent = italyHours + ":" + italyMinutes;
+
+    // 🇺🇸 MIAMI (12H AM/PM)
+    let miami = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+    miami = new Date(miami);
+
+    let mh = miami.getHours();
+    let mm = miami.getMinutes().toString().padStart(2, '0');
+    let ampm = mh >= 12 ? "PM" : "AM";
+
+    mh = mh % 12;
+    if (mh === 0) mh = 12;
+
+    document.getElementById("miamiTime").textContent = mh + ":" + mm + " " + ampm;
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
+</script>
 
 </body>
 </html>
